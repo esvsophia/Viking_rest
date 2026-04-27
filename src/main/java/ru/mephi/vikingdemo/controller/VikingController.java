@@ -22,6 +22,16 @@ public class VikingController {
         this.vikingListener = vikingListener;
     }
 
+    @PostMapping("/post")
+    @Operation(summary = "Создать викинга со случайными параметрами",
+            operationId = "post")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Викинг успешно создан")
+    })
+    public void addRndmViking(){
+        vikingListener.testAdd();
+    }
+
     @PostMapping
     @Operation(summary = "Добавить конкретного викинга")
     public Viking addViking(@RequestBody Viking viking) {
@@ -64,16 +74,5 @@ public class VikingController {
     public List<String> test() {
         System.out.println("GET /api/vikings/test called");
         return List.of("Ragnar", "Bjorn");
-    }
-
-    @PostMapping("/post")
-    @Operation(summary = "Создать викинга со случайными параметрами", 
-            operationId = "post")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Викинг успешно создан")
-    })
-    public void addViking(){
-        System.out.println("POST api/vikings/post called");
-        vikingListener.testAdd();
     }
 }
