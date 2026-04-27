@@ -75,6 +75,7 @@ public class VikingRepository {
             ps.setInt(3, viking.heightCm());
             ps.setString(4, viking.hairColor().name());
             ps.setString(5, viking.beardStyle().name());
+            ps.setString(6, viking.description());
 
             return ps;
         }, keyHolder);

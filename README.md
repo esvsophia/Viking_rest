@@ -82,6 +82,8 @@ java -jar target/viking-demo-1.0.0.jar
 GET http://localhost:8080/api/vikings
 ```
 
+
+
 ## Swagger UI
 
 Swagger UI доступен по адресу:
@@ -109,31 +111,21 @@ http://localhost:8080/h2-console
 
 Важно: значение поля **JDBC URL** в H2 Console должно совпадать со значением `spring.datasource.url` в `application.yaml`.
 
-Если в `application.yaml` используется абсолютный путь, например:
+В `application.yaml` используется относительный путь:
 
 ```yaml
 spring:
   datasource:
-    url: jdbc:h2:file:D:/viking-demo-data/viking-demo-db;AUTO_SERVER=TRUE
+    url: jdbc:h2:./data/viking-demo-db;AUTO_SERVER=TRUE
 ```
 
-то в H2 Console нужно указать тот же URL:
+в H2 Console нужно указать тот же URL:
 
 ```text
-jdbc:h2:file:D:/viking-demo-data/viking-demo-db;AUTO_SERVER=TRUE
+jdbc:h2:./data/viking-demo-db
 ```
 
 Расширение файла `.mv.db` в JDBC URL не указывается. Например, если на диске создан файл:
-
-```text
-D:/viking-demo-data/viking-demo-db.mv.db
-```
-
-то подключаться нужно так:
-
-```text
-jdbc:h2:file:D:/viking-demo-data/viking-demo-db;AUTO_SERVER=TRUE
-```
 
 ## Файловая БД H2
 

@@ -49,6 +49,11 @@ public class VikingController {
     }
     
     @PostMapping("/post")
+    @Operation(summary = "Создать викинга со случайными параметрами", 
+            operationId = "post")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Викинг успешно создан")
+    })
     public void addViking(){
         vikingListener.testAdd();
     }
