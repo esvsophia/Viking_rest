@@ -12,7 +12,7 @@
 
     <groupId>ru.mephi</groupId>
     <artifactId>viking-demo</artifactId>
-    <version>1.5.0</version>
+    <version>1.5.1</version>
     <name>viking-demo</name>
     <description>Demo project: Swing GUI + REST API + Swagger for vikings</description>
 

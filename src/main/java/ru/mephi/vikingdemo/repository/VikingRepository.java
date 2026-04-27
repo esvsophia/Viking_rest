@@ -36,20 +36,20 @@ public class VikingRepository {
 
     public List<VikingEntity> findAll() {
         String sql = """
-            select id, name, age, height_cm, hair_color, beard_style, description
-            from vikings
-            order by id
-            """;
+                select id, name, age, height_cm, hair_color, beard_style
+                from vikings
+                order by id
+                """;
 
         return jdbcTemplate.query(sql, vikingRowMapper);
     }
 
     public Optional<VikingEntity> findById(int id) {
         String sql = """
-            select id, name, age, height_cm, hair_color, beard_style, description
-            from vikings
-            where id = ?
-            """;
+                select id, name, age, height_cm, hair_color, beard_style
+                from vikings
+                where id = ?
+                """;
 
         List<VikingEntity> result = jdbcTemplate.query(sql, vikingRowMapper, id);
 
@@ -86,22 +86,6 @@ public class VikingRepository {
         }
 
         return key.intValue();
-    }
-
-    public void update(VikingEntity viking) {
-        String sql = """
-            update vikings
-            set name = ?, age = ?, height_cm = ?, hair_color = ?, beard_style = ?
-            where id = ?
-            """;
-        jdbcTemplate.update(sql,
-                viking.name(),
-                viking.age(),
-                viking.heightCm(),
-                viking.hairColor().name(),
-                viking.beardStyle().name(),
-                viking.id()
-        );
     }
 
     public void deleteById(int id) {
