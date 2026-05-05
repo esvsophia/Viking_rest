@@ -30,6 +30,7 @@ public class VikingController {
     })
     public void addRndmViking(){
         vikingListener.testAdd();
+        vikingListener.refreshGui();
     }
 
     @PostMapping
@@ -45,16 +46,18 @@ public class VikingController {
                 viking.heightCm(), viking.hairColor(),
                 viking.beardStyle(), viking.equipment());
         vikingService.update(toUpdate);
+        vikingListener.refreshGui();
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Удалить викинга")
     public void deleteViking(@PathVariable int id) {
         vikingService.deleteById(id);
+        vikingListener.refreshGui();
     }
-    
+
     @GetMapping
-    @Operation(summary = "Получить список созданных викингов", 
+    @Operation(summary = "Получить список созданных викингов",
             operationId = "getAllVikings")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Список успешно получен")
@@ -65,7 +68,7 @@ public class VikingController {
     }
 
     @GetMapping("/test")
-    @Operation(summary = "Получить список тестовых викингов", 
+    @Operation(summary = "Получить список тестовых викингов",
             operationId = "getTest")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Список успешно получен")

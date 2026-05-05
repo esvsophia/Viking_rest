@@ -105,10 +105,15 @@ public class VikingDesktopFrame extends JFrame {
         tableModel.addViking(saved);
     }
 
+    public void refreshTable() {
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            tableModel.refresh(vikingService.findAll());
+        });
+    }
+
     public void addNewViking(Viking viking) {
         tableModel.addViking(viking);
     }
-
     private void onUpdateViking(JTable table) {
         int selectedRow = table.getSelectedRow();
         if (selectedRow != -1) {
