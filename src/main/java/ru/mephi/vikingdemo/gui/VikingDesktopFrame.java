@@ -48,9 +48,6 @@ public class VikingDesktopFrame extends JFrame {
         JButton deleteButton = new JButton("Delete selected");
         deleteButton.addActionListener(event -> onDeleteViking(vikingTable));
 
-        JButton updateButton = new JButton("Update info");
-        updateButton.addActionListener(event -> onUpdateViking(vikingTable));
-
         JButton deleteAllButton = new JButton("Delete all");
         deleteAllButton.addActionListener(event -> {
             vikingService.deleteAll();
@@ -61,7 +58,6 @@ public class VikingDesktopFrame extends JFrame {
         bottomPanel.add(randomBtn);
         bottomPanel.add(addSpecificButton);
         bottomPanel.add(deleteButton);
-        bottomPanel.add(updateButton);
         bottomPanel.add(deleteAllButton);
         add(bottomPanel, BorderLayout.SOUTH);
         tableModel.refresh(vikingService.findAll());
@@ -113,20 +109,5 @@ public class VikingDesktopFrame extends JFrame {
 
     public void addNewViking(Viking viking) {
         tableModel.addViking(viking);
-    }
-    private void onUpdateViking(JTable table) {
-        int selectedRow = table.getSelectedRow();
-        if (selectedRow != -1) {
-            Viking oldViking = tableModel.getVikingAt(selectedRow);
-
-            VikingEditDialog dialog = new VikingEditDialog(this, oldViking);
-            dialog.setVisible(true);
-
-            if (dialog.isConfirmed()) {
-                Viking updatedViking = dialog.getUpdatedViking(oldViking.id());
-                vikingService.update(updatedViking);
-                tableModel.refresh(vikingService.findAll());
-            }
-        }
     }
 }
